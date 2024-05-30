@@ -5,7 +5,6 @@ import matplotlib
 import matplotlib.pyplot as plt
 
 matplotlib.rcParams['font.family'] = ['SimHei']
-
 def create_png_from_text(input_file, output_file, fontsize=14):
     with open(input_file, "r", encoding="utf-8") as f:
         text = f.read()
@@ -14,7 +13,7 @@ def create_png_from_text(input_file, output_file, fontsize=14):
         fig, ax = plt.subplots(figsize=(12, 36))
 
         # 添加文本到图形（临时）
-        text_obj = ax.text(0.5, 0.5, text, fontsize=fontsize, va='center', ha='center', wrap=False)
+        text_obj = ax.text(0.5, 0.5, text)
 
         # 绘制一次以获取文本边界框
         fig.canvas.draw()
@@ -40,11 +39,11 @@ def create_png_from_text(input_file, output_file, fontsize=14):
         ax.axis('off')
 
         # 添加文本到新的图形
-        ax.text(0.5, 0.5, text, fontsize=fontsize, wrap=False)
+        ax.text(0.5, 0.5, text)
 
         # 保存图像
         plt.savefig(output_file, bbox_inches='tight', dpi=300)
-        print("Saved PNG to", output_file)
+        print("Saved to", output_file)
 
 
 create_png_from_text("gdb.txt", "gdb.png", fontsize=14)
